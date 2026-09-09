@@ -73,8 +73,9 @@ body{
 .pet-id{display:flex;align-items:center;gap:8px}
 .pet-name{font-family:'Baloo 2';font-weight:800;font-size:20px}
 .level-chip{background:#eee7fb;color:#7a5cd0;font-weight:800;font-size:12px;padding:3px 9px;border-radius:20px}
-.wallet{display:flex;align-items:center;gap:10px}
-.coins{font-family:'Baloo 2';font-weight:800;font-size:18px;color:#c98a2a}
+.wallet{display:flex;align-items:center;gap:8px}
+.coins{font-family:'Baloo 2';font-weight:800;font-size:17px;color:#c98a2a}
+.paws{font-family:'Baloo 2';font-weight:800;font-size:17px;color:#8f6fd0}
 .icon-btn{border:none;background:#f4ecf2;width:38px;height:38px;border-radius:12px;font-size:18px;cursor:pointer}
 
 /* ---------- Habitación ---------- */
@@ -187,7 +188,69 @@ body{
   box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:80;animation:pop .25s ease;
 }
 
+/* aura premium */
+@keyframes auraGlow{0%,100%{filter:drop-shadow(0 0 6px #ff9ec4)}33%{filter:drop-shadow(0 0 10px #a9d8ff)}66%{filter:drop-shadow(0 0 10px #b7f0c9)}}
+.pet-stage.aura svg{animation:auraGlow 2.4s ease-in-out infinite}
+
+/* línea de billetera en modales */
+.wallet-line{text-align:center;font-weight:800;color:var(--ink);background:#fbf3f8;border-radius:12px;padding:8px;margin-bottom:12px}
+
+/* vestuario */
+.ward-slot{margin-bottom:14px}
+.ward-slot h3{font-family:'Baloo 2';font-size:16px;margin-bottom:8px;color:var(--ink)}
+.ward-row{display:flex;gap:10px;flex-wrap:wrap}
+.ward-item{border:3px solid transparent;background:#fbf3f8;border-radius:16px;padding:8px 6px;min-width:64px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font-family:'Nunito';font-weight:700}
+.ward-item span{font-size:28px}
+.ward-item small{font-size:11px;color:var(--ink-soft)}
+.ward-item.on{border-color:var(--pink-deep);background:#ffe4f0}
+.ward-item.off{background:#f0e3ec}
+
+/* jardín */
+.garden{display:flex;gap:10px;justify-content:center;margin-bottom:14px}
+.plot{flex:1;background:#f4ecdf;border-radius:16px;padding:10px 6px;text-align:center;border:2px solid #e8dcc4}
+.plot-soil{font-size:40px;line-height:1.1}
+.plot-soil.growing{animation:breathe 2.5s ease-in-out infinite}
+.plot-soil.ready{animation:wiggle .6s ease-in-out infinite}
+.plot-lbl{font-size:11px;color:var(--ink-soft);font-weight:700;margin:2px 0 6px}
+.plot-bar{height:8px;background:#e0d3bd;border-radius:6px;overflow:hidden;margin:8px 2px}
+.plot-bar i{display:block;height:100%;background:linear-gradient(90deg,#8fe3c8,#5fcfae);transition:width .4s}
+.plot .buy{margin-top:6px;font-size:12px;padding:7px 4px}
+
+/* vecino */
+.visit{text-align:center}
+.visit-pet{width:170px;height:180px;margin:0 auto 6px}
+.visit-pet svg{width:100%;height:100%;overflow:visible}
+.visit p{font-weight:700;margin-bottom:12px}
+
+/* caja misteriosa */
+.box-area{text-align:center}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.box-emoji{font-size:80px;animation:shake 1.2s ease-in-out infinite;margin:6px 0 12px}
+.box-area .btn{margin-bottom:8px}
+
+/* logros */
+.ach-list{display:flex;flex-direction:column;gap:8px}
+.ach{display:flex;align-items:center;gap:10px;background:#fbf3f8;border-radius:14px;padding:10px 12px}
+.ach.off{opacity:.6}
+.ach.on{background:#eafaf3}
+.ach-ico{font-size:26px;width:32px;text-align:center}
+.ach small{display:block;color:var(--ink-soft);font-size:11px}
+.ach-paw{margin-left:auto;font-weight:800;color:#8f6fd0;font-size:13px}
+
+/* pesca */
+.fishing-modal{max-width:360px;text-align:center}
+.fish-pond{position:relative;height:200px;border-radius:18px;overflow:hidden;margin:6px 0 12px;
+  background:linear-gradient(180deg,#bfe0ff 0%,#8fc4f0 60%,#6aa8dd 100%)}
+.fish-pond::after{content:"🌊";position:absolute;bottom:6px;left:0;right:0;text-align:center;font-size:24px;opacity:.5}
+.fish-bobber{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);font-size:52px;transition:transform .2s}
+.fish-bobber.bite{animation:bounce .5s ease infinite}
+.fish-btns{display:flex;gap:10px}
+.fish-btns .btn{flex:1}
+
 @media(max-width:400px){
   .pet-stage{width:160px;height:180px}
   .room{height:300px}
+  .act{font-size:12px;padding:10px 4px}
+  .act span{font-size:22px}
 }

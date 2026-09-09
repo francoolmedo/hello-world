@@ -45,6 +45,7 @@
         <span class="level-chip">Nv <span id="levelNum">1</span></span>
       </div>
       <div class="wallet">
+        <span class="paws" title="Patitas (moneda premium)">🐾 <span id="pawCount">0</span></span>
         <span class="coins">🪙 <span id="coinCount">0</span></span>
         <button id="menuBtn" class="icon-btn" title="Menú">☰</button>
       </div>
@@ -86,6 +87,12 @@
       <button class="act" data-action="wash"><span>🛁</span>Bañar</button>
       <button class="act" data-action="sleep"><span>😴</span>Dormir</button>
       <button class="act" data-action="pet"><span>💗</span>Mimo</button>
+      <button class="act" data-action="dress"><span>👗</span>Vestir</button>
+      <button class="act" data-action="garden"><span>🌱</span>Jardín</button>
+      <button class="act" data-action="fish"><span>🎣</span>Pescar</button>
+      <button class="act" data-action="visit"><span>🏠</span>Vecino</button>
+      <button class="act" data-action="box"><span>🎁</span>Caja</button>
+      <button class="act" data-action="achievements"><span>🏆</span>Logros</button>
       <button class="act" data-action="shop"><span>🛍️</span>Tienda</button>
     </nav>
   </section>
@@ -110,6 +117,21 @@
       </div>
       <div id="mgField" class="mg-field"></div>
       <button id="mgClose" class="btn">Terminar</button>
+    </div>
+  </div>
+
+  <!-- ===== Pesca ===== -->
+  <div id="fishing" class="modal-backdrop hidden">
+    <div class="modal fishing-modal">
+      <h2>🎣 Pesca</h2>
+      <p class="mg-help" id="fishHelp">Lanzá la caña y esperá a que pique. ¡Cada pez cuesta un poco de energía!</p>
+      <div id="fishPond" class="fish-pond">
+        <div id="fishBobber" class="fish-bobber">🎣</div>
+      </div>
+      <div class="fish-btns">
+        <button id="fishAction" class="btn btn-primary">Lanzar caña</button>
+        <button id="fishClose" class="btn">Salir</button>
+      </div>
     </div>
   </div>
 
