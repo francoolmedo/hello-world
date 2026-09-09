@@ -1,0 +1,193 @@
+:root{
+  --bg:#fbeef4;
+  --card:#ffffff;
+  --ink:#5a4a55;
+  --ink-soft:#9b8a95;
+  --pink:#ff9ec4;
+  --pink-deep:#ff6fa5;
+  --mint:#8fe3c8;
+  --sky:#a9d8ff;
+  --lemon:#ffe38a;
+  --lilac:#c9b6ff;
+  --shadow:0 10px 30px rgba(180,120,150,.25);
+  --radius:22px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:'Nunito',system-ui,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(120% 90% at 50% -10%, #fff6fb 0%, var(--bg) 60%, #f3e2ee 100%);
+  min-height:100dvh;
+  display:flex;align-items:center;justify-content:center;
+  padding:14px;
+}
+#app{width:100%;max-width:460px}
+.hidden{display:none !important}
+
+/* ---------- Botones ---------- */
+.btn{
+  font-family:'Baloo 2',sans-serif;font-weight:700;font-size:16px;
+  border:none;border-radius:16px;padding:12px 18px;cursor:pointer;
+  background:#fff;color:var(--ink);box-shadow:0 4px 0 rgba(0,0,0,.08);
+  transition:transform .08s, box-shadow .08s;
+}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.btn-primary{background:linear-gradient(180deg,var(--pink),var(--pink-deep));color:#fff}
+.btn.big{width:100%;padding:15px;font-size:19px;margin-top:8px}
+
+/* ---------- Bienvenida ---------- */
+.welcome-card{
+  background:var(--card);border-radius:var(--radius);padding:24px 22px;
+  box-shadow:var(--shadow);text-align:center;
+}
+.logo{font-family:'Baloo 2',sans-serif;font-weight:800;font-size:40px;color:var(--pink-deep)}
+.tagline{color:var(--ink-soft);margin:2px 0 18px;font-weight:700}
+.creator-preview{display:flex;justify-content:center;margin-bottom:10px}
+.creator-controls{text-align:left}
+.creator-controls label{display:block;font-weight:800;margin:14px 0 6px;font-size:14px;color:var(--ink)}
+#petName{
+  width:100%;padding:12px 14px;border-radius:14px;border:2px solid #f0dbe8;
+  font-family:'Nunito';font-weight:700;font-size:16px;color:var(--ink);background:#fff;
+}
+#petName:focus{outline:none;border-color:var(--pink)}
+.picker{display:flex;gap:10px;flex-wrap:wrap}
+.pick{
+  width:52px;height:52px;border-radius:14px;border:3px solid transparent;
+  cursor:pointer;background:#f7edf3;display:flex;align-items:center;justify-content:center;
+  font-size:26px;transition:transform .1s;
+}
+.pick:hover{transform:translateY(-2px)}
+.pick.selected{border-color:var(--pink-deep);box-shadow:0 0 0 3px #ffd9e8}
+.pick.color{position:relative}
+.pick.color .swatch{width:30px;height:30px;border-radius:50%}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--card);border-radius:18px;padding:10px 14px;box-shadow:var(--shadow);
+  margin-bottom:12px;
+}
+.pet-id{display:flex;align-items:center;gap:8px}
+.pet-name{font-family:'Baloo 2';font-weight:800;font-size:20px}
+.level-chip{background:#eee7fb;color:#7a5cd0;font-weight:800;font-size:12px;padding:3px 9px;border-radius:20px}
+.wallet{display:flex;align-items:center;gap:10px}
+.coins{font-family:'Baloo 2';font-weight:800;font-size:18px;color:#c98a2a}
+.icon-btn{border:none;background:#f4ecf2;width:38px;height:38px;border-radius:12px;font-size:18px;cursor:pointer}
+
+/* ---------- Habitación ---------- */
+.room{
+  position:relative;height:340px;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);
+  background:
+    linear-gradient(180deg,#d8ecff 0%, #eaf6ff 55%, transparent 55%),
+    linear-gradient(180deg, transparent 55%, #ffd9c2 55%, #ffcbb0 100%);
+}
+.room::before{ /* zócalo */
+  content:"";position:absolute;left:0;right:0;top:55%;height:8px;
+  background:#e9a98a;
+}
+.decor-layer{position:absolute;inset:0;pointer-events:none}
+.decor{position:absolute;font-size:44px;filter:drop-shadow(0 6px 4px rgba(0,0,0,.12))}
+.pet-floor{
+  position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:center;
+}
+.pet-stage{width:190px;height:210px;position:relative;cursor:pointer;user-select:none}
+.pet-stage.small{width:150px;height:170px;cursor:default}
+.pet-stage svg{width:100%;height:100%;overflow:visible}
+
+/* respiración / animaciones de la mascota */
+@keyframes breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-4px) scale(1.02)}}
+@keyframes wiggle{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}30%{transform:translateY(-26px)}55%{transform:translateY(0)}70%{transform:translateY(-10px)}}
+@keyframes sleepZ{0%{opacity:0;transform:translateY(0) scale(.6)}50%{opacity:1}100%{opacity:0;transform:translateY(-40px) scale(1.2)}}
+.pet-body{transform-origin:50% 90%;animation:breathe 3.4s ease-in-out infinite}
+.pet-stage.happy .pet-body{animation:wiggle .5s ease-in-out infinite}
+.pet-stage.bouncing .pet-body{animation:bounce .8s ease}
+.pet-stage.sleeping .pet-body{animation:breathe 4.6s ease-in-out infinite}
+
+.mood-bubble{
+  position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  background:#fff;padding:6px 12px;border-radius:16px;font-weight:800;font-size:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);animation:pop .3s ease;white-space:nowrap;
+}
+.mood-bubble::after{content:"";position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);
+  border:6px solid transparent;border-top-color:#fff;border-bottom:0}
+@keyframes pop{from{transform:translateX(-50%) scale(.6);opacity:0}to{transform:translateX(-50%) scale(1);opacity:1}}
+
+/* efectos flotantes (corazones, burbujas, zzz) */
+.fx-layer{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.fx-item{position:absolute;font-size:28px;animation:floatUp 1.4s ease forwards}
+@keyframes floatUp{0%{opacity:0;transform:translateY(0) scale(.5)}20%{opacity:1}100%{opacity:0;transform:translateY(-120px) scale(1.3)}}
+.zzz{position:absolute;top:20px;left:60%;font-size:26px;color:#7a5cd0;font-weight:800;animation:sleepZ 2.2s ease-in-out infinite}
+
+/* ---------- Barras de estado ---------- */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:12px 2px}
+.stat{display:flex;align-items:center;gap:8px}
+.stat-ico{font-size:18px;width:22px;text-align:center}
+.bar{flex:1;height:14px;background:#f0e3ec;border-radius:10px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(0,0,0,.08)}
+.bar i{display:block;height:100%;width:100%;border-radius:10px;transition:width .5s ease, background .5s}
+
+/* ---------- Acciones ---------- */
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px}
+.act{
+  border:none;background:var(--card);border-radius:18px;padding:12px 6px;cursor:pointer;
+  font-family:'Baloo 2';font-weight:700;font-size:14px;color:var(--ink);
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  box-shadow:0 4px 0 rgba(0,0,0,.06);transition:transform .08s,box-shadow .08s;
+}
+.act span{font-size:26px}
+.act:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.06)}
+.act:disabled{opacity:.45;cursor:not-allowed}
+
+/* ---------- Modal ---------- */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(90,60,80,.45);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;z-index:50;padding:16px;
+}
+.modal{
+  background:var(--card);border-radius:var(--radius);padding:22px;width:100%;max-width:420px;
+  box-shadow:var(--shadow);position:relative;max-height:86dvh;overflow:auto;
+}
+.modal h2{font-family:'Baloo 2';font-size:24px;margin-bottom:12px;color:var(--pink-deep)}
+.modal-close{position:absolute;top:14px;right:14px;border:none;background:#f4ecf2;width:34px;height:34px;border-radius:10px;font-size:16px;cursor:pointer}
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shop-item{
+  background:#fbf3f8;border-radius:16px;padding:12px;text-align:center;border:2px solid #f3e2ee;
+}
+.shop-item .emoji{font-size:38px}
+.shop-item .name{font-weight:800;font-size:14px;margin:4px 0}
+.shop-item .desc{font-size:11px;color:var(--ink-soft);min-height:26px}
+.shop-item .buy{margin-top:6px;width:100%;background:linear-gradient(180deg,var(--mint),#5fcfae);color:#fff;
+  border:none;border-radius:12px;padding:8px;font-weight:800;cursor:pointer;font-family:'Baloo 2'}
+.shop-item .buy:disabled{background:#d9d2d7;cursor:not-allowed}
+.shop-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.shop-tab{border:none;background:#f4ecf2;border-radius:12px;padding:8px 14px;font-weight:800;cursor:pointer;font-family:'Baloo 2';color:var(--ink)}
+.shop-tab.active{background:var(--pink);color:#fff}
+.inv-empty{color:var(--ink-soft);text-align:center;padding:20px;font-weight:700}
+
+.menu-list{display:flex;flex-direction:column;gap:10px}
+.menu-list .btn{width:100%;text-align:left}
+.danger{color:#d9506f}
+
+/* ---------- Mini-juego ---------- */
+.minigame-modal{max-width:380px;text-align:center}
+.mg-help{color:var(--ink-soft);font-weight:700;font-size:13px;margin-bottom:10px}
+.mg-hud{display:flex;justify-content:space-around;font-family:'Baloo 2';font-size:18px;margin-bottom:10px}
+.mg-field{position:relative;height:300px;background:linear-gradient(180deg,#eaf6ff,#d8ecff);
+  border-radius:18px;overflow:hidden;margin-bottom:12px;touch-action:none}
+.mg-ball{position:absolute;font-size:40px;cursor:pointer;user-select:none;will-change:top}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;bottom:22px;left:50%;transform:translateX(-50%);
+  background:#5a4a55;color:#fff;padding:11px 20px;border-radius:20px;font-weight:800;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:80;animation:pop .25s ease;
+}
+
+@media(max-width:400px){
+  .pet-stage{width:160px;height:180px}
+  .room{height:300px}
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pet Pals — Mi mascota virtual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== Pantalla de bienvenida / creación ===== -->
+  <section id="welcome" class="screen">
+    <div class="welcome-card">
+      <div class="logo">🐾 Pet Pals</div>
+      <p class="tagline">Adoptá tu mascota y cuidala todos los días</p>
+
+      <div class="creator">
+        <div class="creator-preview">
+          <div id="previewPet" class="pet-stage small"></div>
+        </div>
+        <div class="creator-controls">
+          <label>Nombre de tu mascota</label>
+          <input id="petName" type="text" maxlength="14" placeholder="Ej: Coco" />
+
+          <label>Especie</label>
+          <div id="speciesPicker" class="picker"></div>
+
+          <label>Color</label>
+          <div id="colorPicker" class="picker"></div>
+
+          <button id="adoptBtn" class="btn btn-primary big">Adoptar 💚</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Juego ===== -->
+  <section id="game" class="screen hidden">
+    <header class="topbar">
+      <div class="pet-id">
+        <span id="petLabel" class="pet-name">Coco</span>
+        <span class="level-chip">Nv <span id="levelNum">1</span></span>
+      </div>
+      <div class="wallet">
+        <span class="coins">🪙 <span id="coinCount">0</span></span>
+        <button id="menuBtn" class="icon-btn" title="Menú">☰</button>
+      </div>
+    </header>
+
+    <div id="room" class="room">
+      <div id="decorLayer" class="decor-layer"></div>
+      <div class="pet-floor">
+        <div id="petStage" class="pet-stage"></div>
+        <div id="petMoodBubble" class="mood-bubble hidden"></div>
+      </div>
+      <div id="fx" class="fx-layer"></div>
+    </div>
+
+    <!-- Barras de estado -->
+    <div class="stats">
+      <div class="stat" data-stat="hunger">
+        <span class="stat-ico">🍽️</span>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="stat" data-stat="happiness">
+        <span class="stat-ico">😊</span>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="stat" data-stat="hygiene">
+        <span class="stat-ico">🫧</span>
+        <div class="bar"><i></i></div>
+      </div>
+      <div class="stat" data-stat="energy">
+        <span class="stat-ico">⚡</span>
+        <div class="bar"><i></i></div>
+      </div>
+    </div>
+
+    <!-- Acciones -->
+    <nav class="actions">
+      <button class="act" data-action="feed"><span>🍎</span>Comer</button>
+      <button class="act" data-action="play"><span>🎾</span>Jugar</button>
+      <button class="act" data-action="wash"><span>🛁</span>Bañar</button>
+      <button class="act" data-action="sleep"><span>😴</span>Dormir</button>
+      <button class="act" data-action="pet"><span>💗</span>Mimo</button>
+      <button class="act" data-action="shop"><span>🛍️</span>Tienda</button>
+    </nav>
+  </section>
+
+  <!-- ===== Modal genérico ===== -->
+  <div id="modal" class="modal-backdrop hidden">
+    <div class="modal">
+      <button id="modalClose" class="modal-close">✕</button>
+      <h2 id="modalTitle">Título</h2>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- ===== Mini-juego (atrapar) ===== -->
+  <div id="minigame" class="modal-backdrop hidden">
+    <div class="modal minigame-modal">
+      <h2>🎾 ¡A jugar!</h2>
+      <p class="mg-help">Tocá las pelotas antes de que caigan. ¡Cada una suma monedas y felicidad!</p>
+      <div class="mg-hud">
+        <span>⏱️ <b id="mgTime">20</b>s</span>
+        <span>🪙 <b id="mgScore">0</b></span>
+      </div>
+      <div id="mgField" class="mg-field"></div>
+      <button id="mgClose" class="btn">Terminar</button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>
